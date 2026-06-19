@@ -61,7 +61,6 @@ func (n *Node) handleConnection(conn net.Conn) {
 
 	msg, err := DecodeMessage(buf[:nBytes])
 	if err != nil {
-		fmt.Println("Error decoding message:", err)
 		return
 	}
 

@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 
 	"github.com/Vishal-2029/internal"
 	"github.com/Vishal-2029/network"
@@ -14,6 +15,11 @@ func main() {
 	p2pPort := flag.String("p2p", "9000", "P2P Port")
 	dbFile := flag.String("db", "chaingo.db", "Database file")
 	flag.Parse()
+
+	// Render injects PORT env variable — use it if available
+	if envPort := os.Getenv("PORT"); envPort != "" {
+		*apiPort = envPort
+	}
 
 	db, err := pkg.NewBoltDB(*dbFile)
 	if err != nil {
